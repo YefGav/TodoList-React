@@ -13,22 +13,6 @@ const TodoList = () => {
     setTodos(todos.filter((_, i) => i !== index));
   };
 
-  const moveTodoUp = (index) => {
-    if (index > 0) {
-      const newTodos = [...todos];
-      [newTodos[index - 1], newTodos[index]] = [newTodos[index], newTodos[index - 1]];
-      setTodos(newTodos);
-    }
-  };
-
-  const moveTodoDown = (index) => {
-    if (index < todos.length - 1) {
-      const newTodos = [...todos];
-      [newTodos[index + 1], newTodos[index]] = [newTodos[index], newTodos[index + 1]];
-      setTodos(newTodos);
-    }
-  };
-
   const resetTodos = () => {
     setTodos([]);
   };
@@ -41,8 +25,6 @@ const TodoList = () => {
           key={index}
           todo={todo}
           onDelete={() => deleteTodo(index)}
-          onMoveUp={() => moveTodoUp(index)}
-          onMoveDown={() => moveTodoDown(index)}
         />
       ))}
       <button onClick={resetTodos} className="mt-4 bg-red-500 text-white py-2 px-4 rounded">
