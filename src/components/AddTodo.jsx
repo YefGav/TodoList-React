@@ -26,7 +26,7 @@ const AddTodo = ({ onAdd }) => {
         className="mt-2"
       />
       <button onClick={handleAdd} className="mt-2 bg-blue-500 text-white py-2 px-4 rounded">
-        Agregar
+        Agregar por favor 😊
       </button>
     </div>
   );
