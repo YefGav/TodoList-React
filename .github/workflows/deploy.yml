@@ -29,9 +29,9 @@ jobs:
         with:
           args: --delete --acl public-read
         env:
-          AWS_S3_BUCKET: factoriaf5.yeferson.fase1
+          AWS_S3_BUCKET: factoriaf5.yeferson.fase2
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           AWS_SESSION_TOKEN: ${{ secrets.AWS_SESSION_TOKEN }}
-          AWS_REGION: us-west-1
+          AWS_REGION: us-east-1
           SOURCE_DIR: ./dist
