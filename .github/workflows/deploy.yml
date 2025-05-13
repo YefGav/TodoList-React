@@ -1,4 +1,4 @@
-name:  Deploy to S3 Yefer
+name: Deploy to S3 Yefer
 
 on:
   push:
@@ -24,14 +24,16 @@ jobs:
       - name: 🛠️ Build app
         run: npm run build
 
+      - name: 🔐 Configure AWS credentials
+        run: |
+          aws configure set aws_access_key_id ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws configure set aws_secret_access_key ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws configure set aws_session_token ${{ secrets.AWS_SESSION_TOKEN }}
+          aws configure set region us-east-1
+
       - name: ☁️ Deploy to S3
-        uses: jakejarvis/s3-sync-action@master
-        with:
-          args: --delete --acl public-read
-        env:
-          AWS_S3_BUCKET: factoriaf5.yeferson.fase2
-          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          AWS_SESSION_TOKEN: ${{ secrets.AWS_SESSION_TOKEN }}
-          AWS_REGION: us-east-1
-          SOURCE_DIR: ./dist
+        run: |
+          aws s3 sync ./dist s3://factoriaf5.yeferson.fase2 --delete --acl public-read
+
+      - name: ✅ Confirmación
+        run: echo "🚀 ¡Despliegue completado correctamente en S3!"
